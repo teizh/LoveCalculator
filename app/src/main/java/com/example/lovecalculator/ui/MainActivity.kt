@@ -7,20 +7,18 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.lovecalculator.LoveViewModel
-import com.example.lovecalculator.Repository
+import com.example.lovecalculator.Utils
 import com.example.lovecalculator.databinding.ActivityMainBinding
-import com.example.lovecalculator.remote.LoveModel
-import com.example.lovecalculator.remote.RetrofitService
-import retrofit2.Call
-import retrofit2.Response
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     val viewModel: LoveViewModel by viewModels()
-
+    @Inject
+    lateinit var utils: Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,20 +30,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun initClickers() {
         with(binding) {
+
+
             calculateBtn.setOnClickListener {
-                viewModel.getLiveLove(
-                    firstEd.text.toString(),
-                    secondEd.text.toString()
-                )
-                    .observe(this@MainActivity, Observer { loveModel ->
-                        Log.e("ololo", "initClickers: $loveModel")
-                        showResult(
-                            loveModel.percentage,
-                            loveModel.result,
-                            loveModel.firstName,
-                            loveModel.secondName
-                        )
-                    })
+
+                utils.showToast(this@MainActivity)
+
+
+                /*  viewModel.getLiveLove(
+                      firstEd.text.toString(),
+                      secondEd.text.toString()
+                  ).observe(this@MainActivity, Observer { loveModel ->
+                      Log.e("ololo", "initClickers: $loveModel")
+                      showResult(
+                          loveModel.percentage,
+                          loveModel.result,
+                          loveModel.firstName,
+                          loveModel.secondName
+                      )
+                  })*/
                 /*         Repository().getLoveMutableLiveData(firstEd.text.toString(),
                              secondEd.text.toString())
                          RetrofitService().api.getPercentage(
