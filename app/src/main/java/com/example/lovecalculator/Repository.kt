@@ -2,13 +2,13 @@ package com.example.lovecalculator
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.lovecalculator.remote.LoveApi
-import com.example.lovecalculator.remote.LoveModel
+import com.example.lovecalculator.data.remote.LoveApi
+import com.example.lovecalculator.data.remote.LoveModel
 import retrofit2.Call
 import retrofit2.Response
 import javax.inject.Inject
 
-class Repository @Inject constructor(private val api:LoveApi) {
+class Repository @Inject constructor(private val api: LoveApi) {
     fun getLoveMutableLiveData(firstName: String, secondName: String): MutableLiveData<LoveModel> {
         val liveData = MutableLiveData<LoveModel>()
         api.getPercentage(firstName, secondName )

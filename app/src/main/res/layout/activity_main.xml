@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,69 +8,13 @@
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
-        android:alpha=".75"
-        android:src="@drawable/white_heart" />
-
-    <EditText
-        android:id="@+id/firstEd"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:hint="@string/enter_your_name"
-        android:textColorHint="@color/pink"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tv_percentage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:text="text1"
-        android:textColor="@color/pink"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/secondEd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:hint="@string/enter_partner_s_name"
-        android:textColorHint="@color/pink"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:text="text2"
-        android:textColor="@color/pink"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/calculateBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/pink"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/calculate"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-
+        app:navGraph="@navigation/nav"
         />
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

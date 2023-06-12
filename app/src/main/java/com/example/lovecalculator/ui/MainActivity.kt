@@ -7,8 +7,11 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
 import com.example.lovecalculator.LoveViewModel
+import com.example.lovecalculator.R
 import com.example.lovecalculator.Utils
+import com.example.lovecalculator.data.local.Pref
 import com.example.lovecalculator.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -16,75 +19,25 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    val viewModel: LoveViewModel by viewModels()
+   // val viewModel: LoveViewModel by viewModels()
     @Inject
-    lateinit var utils: Utils
+    lateinit var pref: Pref
+    //  @Inject
+    //  lateinit var utils: Utils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initClickers()
-        binding.tvPercentage.visibility = View.INVISIBLE
-        binding.tvDescription.visibility = View.INVISIBLE
-    }
-
-    private fun initClickers() {
-        with(binding) {
-
-
-            calculateBtn.setOnClickListener {
-
-                utils.showToast(this@MainActivity)
-
-
-                /*  viewModel.getLiveLove(
-                      firstEd.text.toString(),
-                      secondEd.text.toString()
-                  ).observe(this@MainActivity, Observer { loveModel ->
-                      Log.e("ololo", "initClickers: $loveModel")
-                      showResult(
-                          loveModel.percentage,
-                          loveModel.result,
-                          loveModel.firstName,
-                          loveModel.secondName
-                      )
-                  })*/
-                /*         Repository().getLoveMutableLiveData(firstEd.text.toString(),
-                             secondEd.text.toString())
-                         RetrofitService().api.getPercentage(
-                             firstEd.text.toString(),
-                             secondEd.text.toString()
-                         ).enqueue(object : retrofit2.Callback<LoveModel> {
-                             override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
-                                 Log.e("ololo", " onResponse: ${response.body()}")
-                                 response.body()?.let { it1 -> showResult(it1.percentage, it1.result, it1.firstName, it1.secondName) }
-                             }
-                             override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-                                 Log.e("ololo", " onFailure: ${t.message}")
-                             }
-                         })*/
-            }
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navController = navHostFragment.navController
+        if (!pref.isUserSeen()) {
+            navController.navigate(R.id.onBoardingFragment)
         }
+  /*      initClickers()
+        binding.tvPercentage.visibility = View.INVISIBLE
+        binding.tvDescription.visibility = View.INVISIBLE*/
     }
 
-    private fun showResult(
-        percentage: String,
-        description: String,
-        firstName: String,
-        secondName: String
-    ) {
-        binding.tvPercentage.text = "$firstName and $secondName have $percentage% chance!"
-        binding.tvDescription.text = description
-        binding.firstEd.visibility = View.INVISIBLE
-        binding.secondEd.visibility = View.INVISIBLE
-        binding.tvPercentage.visibility = View.VISIBLE
-        binding.tvDescription.visibility = View.VISIBLE
 
-        Handler().postDelayed({
-            binding.firstEd.visibility = View.VISIBLE
-            binding.secondEd.visibility = View.VISIBLE
-            binding.tvPercentage.visibility = View.INVISIBLE
-            binding.tvDescription.visibility = View.INVISIBLE
-        }, 10000)
-    }
 }

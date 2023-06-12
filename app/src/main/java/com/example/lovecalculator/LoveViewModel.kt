@@ -2,9 +2,9 @@ package com.example.lovecalculator
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.lovecalculator.remote.LoveModel
+import com.example.lovecalculator.data.remote.LoveModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.internal.LockFreeLinkedListNode
+
 import javax.inject.Inject
 
 @HiltViewModel
