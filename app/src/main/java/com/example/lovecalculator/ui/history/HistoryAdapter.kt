@@ -1,5 +1,6 @@
 package com.example.lovecalculator.ui.history
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ class HistoryAdapter() :
 
     private val data = arrayListOf<LoveModel>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addTasks(list: List<LoveModel>) {
         data.clear()
         data.addAll(list)
