@@ -16,7 +16,8 @@
         android:layout_marginTop="32dp"
 
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
+        app:lottie_loop="true"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/tv_title"
