@@ -8,14 +8,15 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/iv_board"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
 
-           tools:ignore="ContentDescription" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
     <TextView
         android:id="@+id/tv_title"
